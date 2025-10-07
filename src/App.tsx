@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import { Music, Rocket, Laptop } from 'lucide-react';
+
 function App() {
+  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+
   return (
     <div className="h-screen overflow-y-auto snap-container smooth-scroll">
       {/* Animated Gradient Background with Curtain Effect */}
@@ -6,6 +11,79 @@ function App() {
         <div className="absolute inset-0 animated-curtain opacity-90"></div>
         <div className="absolute inset-0 grain-overlay"></div>
       </div>
+
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div className="glass-nav backdrop-blur-xl rounded-2xl px-6 py-4 flex items-center justify-between">
+          {/* Left side - Icons */}
+          <div className="flex items-center gap-8">
+            {/* Violin Icon */}
+            <div
+              className="relative"
+              onMouseEnter={() => setHoveredIcon('violin')}
+              onMouseLeave={() => setHoveredIcon(null)}
+            >
+              <div className="nav-icon-wrapper cursor-pointer">
+                <Music className="w-6 h-6 text-[#d4a574]" strokeWidth={1.5} />
+              </div>
+              <div className={`icon-image-popup ${
+                hoveredIcon === 'violin' ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4'
+              }`}>
+                <img
+                  src="https://images.pexels.com/photos/1010519/pexels-photo-1010519.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Violin"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            </div>
+
+            {/* Rocket Icon */}
+            <div
+              className="relative"
+              onMouseEnter={() => setHoveredIcon('rocket')}
+              onMouseLeave={() => setHoveredIcon(null)}
+            >
+              <div className="nav-icon-wrapper cursor-pointer">
+                <Rocket className="w-6 h-6 text-[#d4a574]" strokeWidth={1.5} />
+              </div>
+              <div className={`icon-image-popup ${
+                hoveredIcon === 'rocket' ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4'
+              }`}>
+                <img
+                  src="https://images.pexels.com/photos/586030/pexels-photo-586030.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Rocket"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            </div>
+
+            {/* Laptop Icon */}
+            <div
+              className="relative"
+              onMouseEnter={() => setHoveredIcon('laptop')}
+              onMouseLeave={() => setHoveredIcon(null)}
+            >
+              <div className="nav-icon-wrapper cursor-pointer">
+                <Laptop className="w-6 h-6 text-[#d4a574]" strokeWidth={1.5} />
+              </div>
+              <div className={`icon-image-popup ${
+                hoveredIcon === 'laptop' ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4'
+              }`}>
+                <img
+                  src="https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Laptop"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Logo */}
+          <div className="font-playfair text-2xl font-bold tracking-[0.2em] text-[#d4a574]">
+            H J A
+          </div>
+        </div>
+      </nav>
 
       {/* Section 1: Profile */}
       <section className="h-screen snap-section flex items-center justify-center p-6 transition-opacity duration-1000">
